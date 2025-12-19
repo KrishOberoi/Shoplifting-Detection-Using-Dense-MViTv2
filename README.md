@@ -1,22 +1,22 @@
-# Shoplifting Detection System
+# Shoplifting Detection Using Dense MViT v2
 
-A professional AI-powered shoplifting detection system using computer vision and deep learning techniques.
+A high-performance AI-powered shoplifting detection system using Multiscale Vision Transformer (MViT) with FP16 quantization for optimized inference speed.
 
 ## Features
 
-- Real-time pose detection using YOLOv8
-- Video classification with MViT (Multiscale Vision Transformer)
-- Event-based context tracking for accurate detection
-- Multi-trigger detection system (motion, occlusion, position, acceleration)
-- High-confidence threshold (75%) to minimize false positives
-- Full event context extraction for verification
+- Dense frame-by-frame video analysis using MViT v2 Small
+- FP16 quantization for 20-30% inference speedup
+- Temporal smoothing with majority voting for robust detection
+- GPU-accelerated preprocessing with ImageNet normalization
+- High-confidence threshold (80%) to minimize false positives
+- Real-time processing capabilities
 
 ## Installation
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/shoplifting-detection.git
-cd shoplifting-detection
+git clone https://github.com/KrishOberoi/Shoplifting-Detection-Using-Dense-MViTv2.git
+cd Shoplifting-Detection-Using-Dense-MViTv2
 ```
 
 2. Install dependencies:
@@ -24,42 +24,30 @@ cd shoplifting-detection
 pip install -r requirements.txt
 ```
 
-3. Download required models:
-- YOLOv8 pose model (`yolov8n-pose.pt`) - automatically downloaded by ultralytics
+3. Download required model:
 - MViT model checkpoint (`mvit_final_optimized.pth`) - place in the project root or update path in code
 
 ## Usage
 
-### Main Detection System
-```python
-from src.shoplifting_detection import run_detection
-
-# Run detection on a video
-run_detection(
-    video_path="path/to/your/video.mp4",
-    output_path="output.mp4",  # optional
-    display=True  # show real-time detection
-)
-```
-
-### MViT Dense Detection (FP16)
 ```python
 from src.mvit_dense_detection import run_inference_streaming_fp16_dense
+
+# Load the pre-trained MViT model (automatically loads and converts to FP16)
+# The model loading is handled internally in the function
 
 # Run dense frame-by-frame detection with FP16 quantization
 run_inference_streaming_fp16_dense(
     source="path/to/your/video.mp4",
-    model=mvit_model  # Pre-loaded MViT model
+    model=None  # Model is loaded internally
 )
 ```
 
 ## Project Structure
 
 ```
-shoplifting-detection/
+Shoplifting-Detection-Using-Dense-MViTv2/
 ├── src/
 │   ├── __init__.py
-│   ├── shoplifting_detection.py  # Main detection code
 │   └── mvit_dense_detection.py   # MViT dense detection with FP16 quantization
 ├── requirements.txt
 ├── .gitignore
@@ -69,17 +57,19 @@ shoplifting-detection/
 ## Requirements
 
 - Python 3.8+
-- PyTorch
-- OpenCV
-- Ultralytics YOLO
-- Torchvision
+- PyTorch >= 2.0.0
+- Torchvision >= 0.15.0
+- OpenCV >= 4.8.0
+- NumPy >= 1.21.0
 
 ## Model Details
 
-- **Pose Detection**: YOLOv8n-pose for human pose estimation
-- **Video Classification**: MViT v2 Small for action recognition (quantized to FP16 for optimized performance)
-- **Threshold**: 75% confidence required for shoplifting confirmation
+- **Architecture**: MViT v2 Small (Multiscale Vision Transformer)
+- **Input**: 16-frame video clips at 224x224 resolution
+- **Classes**: Binary classification (Normal vs Shoplifting)
 - **Precision**: FP16 quantization for 20-30% inference speedup
+- **Threshold**: 80% confidence required for shoplifting detection
+- **Temporal Coverage**: Dense frame-by-frame analysis with 16-frame sliding window
 
 ## Contributing
 
