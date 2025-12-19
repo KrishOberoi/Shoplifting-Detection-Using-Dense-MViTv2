@@ -88,9 +88,9 @@ MIT License - see LICENSE file for details
 If you use this code in your research, please cite:
 
 ```
-@software{shoplifting_detection,
-  title={AI-Powered Shoplifting Detection System},
-  author={Your Name},
+@software{shoplifting_detection_mvit,
+  title={Shoplifting Detection Using Dense MViT v2},
+  author={Krish Oberoi},
   year={2025},
-  url={https://github.com/yourusername/shoplifting-detection}
+  url={https://github.com/KrishOberoi/Shoplifting-Detection-Using-Dense-MViTv2}
 }
