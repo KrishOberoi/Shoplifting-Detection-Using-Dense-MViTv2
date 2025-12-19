@@ -4,12 +4,9 @@ A professional AI-powered shoplifting detection system using computer vision and
 
 ## Features
 
-- Real-time pose detection using YOLOv8
 - Video classification with MViT (Multiscale Vision Transformer)
-- Event-based context tracking for accurate detection
-- Multi-trigger detection system (motion, occlusion, position, acceleration)
-- High-confidence threshold (75%) to minimize false positives
 - Full event context extraction for verification
+- High accuracy by viewing each frame upto 15 times using a sliding window with a stride 1
 
 ## Installation
 
@@ -25,7 +22,6 @@ pip install -r requirements.txt
 ```
 
 3. Download required models:
-- YOLOv8 pose model (`yolov8n-pose.pt`) - automatically downloaded by ultralytics
 - MViT model checkpoint (`mvit_final_optimized.pth`) - place in the project root or update path in code
 
 ## Usage
@@ -76,7 +72,6 @@ shoplifting-detection/
 
 ## Model Details
 
-- **Pose Detection**: YOLOv8n-pose for human pose estimation
 - **Video Classification**: MViT v2 Small for action recognition (quantized to FP16 for optimized performance)
 - **Threshold**: 75% confidence required for shoplifting confirmation
 - **Precision**: FP16 quantization for 20-30% inference speedup
